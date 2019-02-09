@@ -29,61 +29,61 @@ describe Bowling do
     expect(bowling.total_score).to eq(9)
   end
 
-  it "returns correct score when pins are hit in every frame" do
+  it 'returns correct score when pins are hit in every frame' do
     scores = [1, 3, 5, 4, 8, 1, 9, 0, 7, 2, 6, 2, 3, 4, 0, 5, 7, 0, 4, 5]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(76)
   end
 
-  it "returns correct score when spare in first frame" do
+  it 'returns correct score when spare in first frame' do
     scores = [7, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(20)
   end
 
-  it "returns correct score when spare in second frame" do
+  it 'returns correct score when spare in second frame' do
     scores = [0, 0, 5, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(12)
   end
 
-  it "returns correct score when two consecutive spares" do
+  it 'returns correct score when two consecutive spares' do
     scores = [0, 0, 5, 5, 8, 2, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(33)
   end
 
-  it "returns correct score when strike in first frame" do
+  it 'returns correct score when strike in first frame' do
     scores = [10, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(26)
   end
 
-  it "returns correct score when strike in third frame" do
+  it 'returns correct score when strike in third frame' do
     scores = [0, 0, 0, 0, 10, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(29)
   end
 
-  it "returns correct score when two consecutive strikes" do
+  it 'returns correct score when two consecutive strikes' do
     scores = [0, 0, 10, 10, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(40)
   end
 
-  it "returns correct score when spare on last frame" do
+  it 'returns correct score when spare on last frame' do
     scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9, 4]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(14)
   end
 
-  it "returns correct score when strike on last frame" do
+  it 'returns correct score when strike on last frame' do
     scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 3, 4]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(17)
   end
 
-  it "returns correct score when strike on last frame and bonus roll" do
+  it 'returns correct score when strike on last frame and bonus roll' do
     scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10]
     scores.each { |score| bowling.roll(score) }
     expect(bowling.total_score).to eq(20)
