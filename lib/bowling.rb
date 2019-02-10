@@ -27,7 +27,7 @@ class Bowling
   private
 
   def spare?
-    @scores[0] + @scores[1] == 10
+    @scores[0..1].sum == 10
   end
 
   def strike?
@@ -39,15 +39,15 @@ class Bowling
   end
 
   def spare_on_last_frame?
-    @scores[0] + @scores[1] == 10 && @scores.count == 3
+    @scores[0..1].sum == 10 && @scores.count == 3
   end
 
   def strike_on_last_frame?
-    @scores[0] == 10 && @scores.count == 3 || @scores[0] == 10 && @scores[1] == 10 && @scores.count == 2
+    @scores[0] == 10 && @scores.count == 3 || @scores[0..1].all?(10) && @scores.count == 2
   end
 
   def strike
-    @total += @scores[1] + @scores[2]
+    @total += @scores[1..2].sum
     @scores.shift(3)
   end
 
