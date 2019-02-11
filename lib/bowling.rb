@@ -40,18 +40,18 @@ class Bowling
   end
 
   def strike
-    @total += @scores[0] + @scores[1] + @scores[2] if @scores[1] < 10
-    @total += @scores[0] + @scores[1] if @scores[1] == 10
-    @scores.shift(strike_on_last_frame? ? 3:1)
+    @total += @scores[0..2].sum if @scores[1] < 10
+    @total += @scores[0..1].sum if @scores[1] == 10
+    @scores.shift(strike_on_last_frame? ? 3 : 1)
   end
 
   def spare
-    @total += @scores[0] + @scores[1] + @scores[2]
-    @scores.shift(spare_on_last_frame? ? 3:2)
+    @total += @scores[0..2].sum
+    @scores.shift(spare_on_last_frame? ? 3 : 2)
   end
 
   def sum
-    @total += @scores[0] + @scores[1]
+    @total += @scores[0..1].sum
     @scores.shift(2)
   end
 end
