@@ -1,20 +1,17 @@
 class Bowling
   def initialize
     @scores = []
+    @total = 0
   end
 
   def total_score
-    @total = @scores.sum
     while @scores.any?
-      if strike_on_last_frame? || spare_on_last_frame?
-        @scores.shift(3)
-      elsif strike? && next_roll_strike?
-        strike_and_next_roll_strike
-      elsif strike?
+      if strike?
         strike
+      elsif spare?
+        spare
       else
-        @total += @scores[2] if spare?
-        @scores.shift(2)
+        sum
       end
     end
     @total
@@ -34,10 +31,6 @@ class Bowling
     @scores[0] == 10
   end
 
-  def next_roll_strike?
-    @scores[1] == 10
-  end
-
   def spare_on_last_frame?
     @scores[0..1].sum == 10 && @scores.count == 3
   end
@@ -47,12 +40,18 @@ class Bowling
   end
 
   def strike
-    @total += @scores[1..2].sum
-    @scores.shift(3)
+    @total += @scores[0] + @scores[1] + @scores[2] if @scores[1] < 10
+    @total += @scores[0] + @scores[1] if @scores[1] == 10
+    @scores.shift(strike_on_last_frame? ? 3:1)
   end
 
-  def strike_and_next_roll_strike
-    @total += @scores[1]
-    @scores.shift(1)
+  def spare
+    @total += @scores[0] + @scores[1] + @scores[2]
+    @scores.shift(spare_on_last_frame? ? 3:2)
+  end
+
+  def sum
+    @total += @scores[0] + @scores[1]
+    @scores.shift(2)
   end
 end
